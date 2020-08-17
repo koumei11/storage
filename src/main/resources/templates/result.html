@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap.min.css}">
+
+        <title>結果</title>
+    </head>
+    <body class="p-3 mb-2 bg-light text-black">
+        <div class="container justify-content-center w-50 p-3" style="margin-top: 5em;">
+            <div class="alert alert-success fill-parent" th:if="${success}">
+                <h1 class="display-5">完了しました！</h1>
+                <span>投稿が完了しました。<a th:href="@{/home}">ここ</a>をクリックしてホームに戻ってください。</span>
+            </div>
+            <div class="alert alert-danger fill-parent" th:unless="${success}">
+                <h1 class="display-5">失敗しました</h1>
+                <span>投稿に失敗しました。<a th:href="@{/home}">ここ</a>をクリックしてホームに戻ってください。</span>
+            </div>
+        </div>
+    </body>
+</html>
