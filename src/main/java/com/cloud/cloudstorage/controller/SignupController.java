@@ -21,7 +21,9 @@ public class SignupController {
     }
 
     @GetMapping()
-    public String signupView() {
+    public String signupView(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
         return "signup";
     }
 
@@ -29,13 +31,17 @@ public class SignupController {
     public String signupUser(@ModelAttribute User user, Model model) {
         String signupError = null;
         if (!userService.isUsernameAvailable(user.getUsername())) {
-            signupError = "The username already exists.";
+            signupError = "そのユーザー名はすでに存在します。";
+            model.addAttribute("user", user);
+        } else if (user.getPassword().length() < 6) {
+            signupError = "パスワードは6文字以上です。";
+            model.addAttribute("user", user);
         }
 
         if (signupError == null) {
             int rowsAdded = userService.createUser(user);
             if (rowsAdded < 0) {
-                signupError = "There was an error signing you up. Please try again.";
+                signupError = "エラーが発生しました。再入力してください。";
             }
         }
 

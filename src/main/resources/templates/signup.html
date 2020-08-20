@@ -6,7 +6,7 @@
 
         <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap.min.css}">
 
-        <title>Sign Up</title>
+        <title>ユーザー登録</title>
     </head>
     <body class="p-3 mb-2 bg-light text-black">
         <div class="container justify-content-center w-50 p-3" style="background-color: #eeeeee; margin-top: 5em;">
@@ -15,8 +15,8 @@
             </div>
 
             <h1 class="display-5">ユーザー登録</h1>
-            <form action="#" method="POST" th:action="@{/signup}">
-                <div class="alert alert-dark" id="success-msg" th:if="${signupSuccess}" >
+            <form action="#" method="POST" th:action="@{/signup}" th:object="${user}">
+                <div class="alert alert-success" id="success-msg" th:if="${signupSuccess}" >
                     登録が完了しました！ ログイン画面で<a id="login-link" th:href="@{/login}">ログイン</a>してください。
                 </div>
                 <div class="alert alert-danger" id="error-msg" th:if="${signupError}">
@@ -25,21 +25,21 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputFirstName">名</label>
-                        <input type="input" name="firstName" class="form-control" id="inputFirstName" placeholder="名前を入力" maxlength="20" required>
+                        <input type="input" name="firstName" class="form-control" id="inputFirstName" th:value="*{firstName}" placeholder="名前を入力" maxlength="20" required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputLastName">姓</label>
-                        <input type="input" name="lastName" class="form-control" id="inputLastName" placeholder="苗字を入力" maxlength="20" required>
+                        <input type="input" name="lastName" class="form-control" id="inputLastName" th:value="*{lastName}" placeholder="苗字を入力" maxlength="20" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputUsername">ユーザー名</label>
-                        <input type="input" name="username" class="form-control" id="inputUsername" placeholder="ユーザー名を入力" maxlength="20" required>
+                        <input type="input" name="username" class="form-control" id="inputUsername" th:value="*{username}" placeholder="ユーザー名を入力" maxlength="20" required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputPassword">パスワード</label>
-                        <input type="password" name="password" class="form-control" id="inputPassword" placeholder="パスワードを入力" maxlength="20" required>
+                        <input type="password" name="password" class="form-control" id="inputPassword" th:value="*{password}" placeholder="パスワードを入力" maxlength="20" required>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary" id="submit-button">登録する</button>
